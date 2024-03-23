@@ -1,5 +1,4 @@
 import esphome.codegen as cg
-from esphome.components.climate import ClimateSwingMode
 import esphome.config_validation as cv
 from esphome.components import climate_ir
 from esphome.const import (
@@ -22,9 +21,3 @@ CONFIG_SCHEMA = climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA.extend(
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await climate_ir.register_climate_ir(var, config)
-
-    cg.add(
-        var.set_supported_swing_modes(
-            ClimateSwingMode.CLIMATE_SWING_VERTICAL,
-        )
-    )
